@@ -42,11 +42,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainController.cs" />
+    <Compile Include="Models\AnimalEntity.cs" />
+    <Compile Include="AnimalsRepository.cs" />
+    <Compile Include="Commands\AddAnimal.cs" />
+    <Compile Include="Commands\CommandsWrapper.cs" />
+    <Compile Include="Commands\RemoveAnimal.cs" />
+    <Compile Include="Commands\CureAnimal.cs" />
+    <Compile Include="Commands\FeedAnimal.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateChangerTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
