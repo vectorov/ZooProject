@@ -32,7 +32,7 @@ namespace ZooProject
 
                 if (int.TryParse(chooseCommand, out numCommand))
                 {
-                    commandsWrapper.GetParameters();
+                    commandsWrapper.GetParameters(numCommand);
                     commandsWrapper.Execute(numCommand);
                 }
             }

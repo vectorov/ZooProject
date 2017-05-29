@@ -1,30 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooProject.Interfaces;
 
 namespace ZooProject.Commands
 {
     class RemoveAnimal : ICommand
     {
-        private string _commandName;
-        private IRepository _animalsRepository;
+        public int ParametersCount { get; set; }
+        public string CommandName { get; set; }
+        public IRepository AnimalsRepository { get; set; }
+        public string ParamsDescription { get; set; }
 
-        public RemoveAnimal(IRepository repository, string name)
+
+        public RemoveAnimal(IRepository repository, string name, int parametersCount = 0, string paramsDescription = "")
         {
-            _animalsRepository = repository;
-            _commandName = name;
-        }
-        public string GetCommandName()
-        {
-            return _commandName;
+            AnimalsRepository = repository;
+            CommandName = name;
+            ParametersCount = parametersCount;
+            ParamsDescription = paramsDescription;
         }
 
         public void Run(params string[] prms)
         {
-            _animalsRepository.RemoveAnimal(prms);
+            AnimalsRepository.RemoveAnimal(prms);
         }
     }
 }

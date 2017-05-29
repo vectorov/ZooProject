@@ -33,5 +33,10 @@ namespace ZooProject
             _health = (int)kind;
             State = AnimalState.Full;
         }
+
+        public override string ToString()
+        {
+            return $"Kind:{Kind.ToString("G")}, Nickname:{Nickname}, State:{State}, Health:{Health}";
+        }
     }
 }

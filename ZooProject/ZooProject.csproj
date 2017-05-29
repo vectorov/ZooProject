@@ -42,6 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandsReport\GetSickTigers.cs" />
+    <Compile Include="CommandsReport\GetElephantByNickName.cs" />
+    <Compile Include="CommandsReport\GetAllHungryAnimals.cs" />
+    <Compile Include="CommandsReport\GetMostHealthyAnimals.cs" />
+    <Compile Include="CommandsReport\GetAllHealthWolfsBears.cs" />
+    <Compile Include="CommandsReport\GetMaxMinHealthAnimals.cs" />
+    <Compile Include="CommandsReport\GetAverageHealthInZoo.cs" />
+    <Compile Include="CommandsReport\GetDeadAnimalsCount.cs" />
+    <Compile Include="CommandsReport\GetAnimalsByState.cs" />
+    <Compile Include="CommandsReport\GetGroupedAnimalsByKind.cs" />
     <Compile Include="MainController.cs" />
     <Compile Include="Models\AnimalEntity.cs" />
     <Compile Include="AnimalsRepository.cs" />

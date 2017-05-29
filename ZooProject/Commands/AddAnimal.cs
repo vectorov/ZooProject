@@ -1,30 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooProject.Interfaces;
 
 namespace ZooProject.Commands
 {
     class AddAnimal : ICommand
     {
-        private string _commandName;
-        private IRepository _animalsRepository;
+        public int ParametersCount { get; set; }
+        public string CommandName { get; set; }
+        public IRepository AnimalsRepository { get; set; }
+        public string ParamsDescription { get; set; }
 
-        public AddAnimal(IRepository animalsRepository, string name)
+        public AddAnimal(IRepository animalsRepository, string name, int parametersCount = 0, string paramsDescription = "")
         {
-            _animalsRepository = animalsRepository;
-            _commandName = name;
-        }
-        public string GetCommandName()
-        {
-            return _commandName;
+            AnimalsRepository = animalsRepository;
+            CommandName = name;
+            ParametersCount = parametersCount;
+            ParamsDescription = paramsDescription;
         }
 
         public void Run(params string[] prms)
         {
-            _animalsRepository.AddAnimal(prms);
+            AnimalsRepository.AddAnimal(prms);
         }
     }
 }

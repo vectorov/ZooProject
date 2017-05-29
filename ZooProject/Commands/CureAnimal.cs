@@ -9,22 +9,23 @@ namespace ZooProject.Commands
 {
     class CureAnimal : ICommand
     {
-        private string _commandName;
-        private IRepository _animalsRepository;
+        public int ParametersCount { get; set; }
+        public string CommandName { get; set; }
+        public IRepository AnimalsRepository { get; set; }
+        public string ParamsDescription { get; set; }
 
-        public CureAnimal(IRepository repository, string name)
+
+        public CureAnimal(IRepository repository, string name, int parametersCount = 0, string paramsDescription = "")
         {
-            _animalsRepository = repository;
-            _commandName = name;
-        }
-        public string GetCommandName()
-        {
-            return _commandName;
+            AnimalsRepository = repository;
+            CommandName = name;
+            ParametersCount = parametersCount;
+            ParamsDescription = paramsDescription;
         }
 
         public void Run(params string[] prms)
         {
-            _animalsRepository.CureAnimal(prms);
+            AnimalsRepository.CureAnimal(prms);
         }
     }
 }

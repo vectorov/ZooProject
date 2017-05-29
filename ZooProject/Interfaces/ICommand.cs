@@ -8,7 +8,10 @@ namespace ZooProject.Interfaces
 {
     interface ICommand
     {
+        int ParametersCount { get; set; }
+        string CommandName { get; set; }
+        string ParamsDescription { get; set; }
+        IRepository AnimalsRepository { get; set; }
         void Run(params string[] prms);
-        string GetCommandName();
     }
 }

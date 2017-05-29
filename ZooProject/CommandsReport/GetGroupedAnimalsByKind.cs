@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ZooProject.Interfaces;
+﻿using ZooProject.Interfaces;
 
 namespace ZooProject.Commands
 {
-    class FeedAnimal : ICommand
+    class GetGroupedAnimalsByKind : ICommand
     {
         public int ParametersCount { get; set; }
         public string CommandName { get; set; }
@@ -15,9 +10,9 @@ namespace ZooProject.Commands
         public string ParamsDescription { get; set; }
 
 
-        public FeedAnimal(IRepository repository, string name, int parametersCount = 0, string paramsDescription = "")
+        public GetGroupedAnimalsByKind(IRepository animalsRepository, string name, int parametersCount = 0, string paramsDescription = "")
         {
-            AnimalsRepository = repository;
+            AnimalsRepository = animalsRepository;
             CommandName = name;
             ParametersCount = parametersCount;
             ParamsDescription = paramsDescription;
@@ -25,7 +20,7 @@ namespace ZooProject.Commands
 
         public void Run(params string[] prms)
         {
-            AnimalsRepository?.FeedAnimal(prms);
+            ((AnimalsRepository)AnimalsRepository).GetGroupedAnimalsByKind();
         }
     }
 }

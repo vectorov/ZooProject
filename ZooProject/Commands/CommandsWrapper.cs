@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZooProject.Interfaces;
 
 namespace ZooProject.Commands
@@ -20,10 +17,21 @@ namespace ZooProject.Commands
             }
 
             Commands = new List<ICommand>();
-            Commands.Add(new AddAnimal(repository, "Add animal"));
-            Commands.Add(new FeedAnimal(repository, "Feed animal"));
-            Commands.Add(new CureAnimal(repository, "Cure animal"));
-            Commands.Add(new RemoveAnimal(repository, "Remove animal"));
+            Commands.Add(new AddAnimal(repository, "Add animal", 2, GetParamDescription(2)));
+            Commands.Add(new FeedAnimal(repository, "Feed animal", 1, GetParamDescription(1)));
+            Commands.Add(new CureAnimal(repository, "Cure animal", 1, GetParamDescription(1)));
+            Commands.Add(new RemoveAnimal(repository, "Remove animal", 1, GetParamDescription(1)));
+
+            Commands.Add(new GetGroupedAnimalsByKind(repository, "Get grouped animals by kind"));
+            Commands.Add(new GetAnimalsByState(repository, "Get animals by state", 1, GetParamDescription(1)));
+            Commands.Add(new GetSickTigers(repository, "Get sickT tigers"));
+            Commands.Add(new GetElephantByNickName(repository, "Get elephant by nickname", 1, GetParamDescription(1)));
+            Commands.Add(new GetAllHungryAnimals(repository, "Get all hungry animals"));
+            Commands.Add(new GetMostHealthyAnimals(repository, "Get most healthy animals"));
+            Commands.Add(new GetDeadAnimalsCount(repository, "Get dead animals count"));
+            Commands.Add(new GetAllHealthWolfsBears(repository, "Get all healthy wolfs and bears"));
+            Commands.Add(new GetMaxMinHealthAnimals(repository, "Get max/min healthy animals"));
+            Commands.Add(new GetAverageHealthInZoo(repository, "Get average health in Zoo"));
         }
 
         public void PutToConsole()
@@ -31,7 +39,7 @@ namespace ZooProject.Commands
             var i = 0;
             foreach (var c in Commands)
             {
-                Console.WriteLine("{0} - {1}", i++, c.GetCommandName());
+                Console.WriteLine("{0} - {1}", i++, c.CommandName);
             }
         }
 
@@ -47,10 +55,36 @@ namespace ZooProject.Commands
             }
         }
 
-        public void GetParameters()
+        public void GetParameters(int numCommand)
         {
-            Console.Write("Enter parameters : ");
-            _parameters = Console.ReadLine();
+            _parameters = "";
+            if (numCommand >= Commands.Count)
+            {
+                Console.WriteLine("Wrong number");
+            }
+            var paramCount = Commands[numCommand].ParametersCount;
+            if (paramCount > 0)
+            {
+                var paramsDescription = Commands[numCommand].ParamsDescription;
+
+                Console.Write($"Enter {paramCount} parameters {paramsDescription} : ");
+
+                _parameters = Console.ReadLine();
+            }
+        }
+
+        private string GetParamDescription(int paramCount)
+        {
+            var res = "";
+            if (paramCount > 0)
+            {
+                for (int i = 0; i < paramCount; i++)
+                {
+                    res += $"arg{i},";
+                }
+                res = res.TrimEnd(',');
+            }
+            return res;
         }
     }
 }
